@@ -1,9 +1,10 @@
 node_modules
-typechain/**/*.ts
+typechain
 
 #Hardhat files
 cache
 artifacts
 factories
+tenderly.yaml
 
 .env
