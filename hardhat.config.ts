@@ -11,6 +11,8 @@ import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
+import "hardhat-deploy";
+import "@tenderly/hardhat-tenderly";
 
 import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
@@ -33,7 +35,7 @@ const ALCHEMY_KEY = process.env.ALCHEMY_KEY || "";
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (args, hre) => {
-  const accounts = await hre.ethers.getSigners();
+  const accounts: any = await hre.ethers.getSigners();
 
   for (const account of accounts) {
     console.log(await account.getAddress());
@@ -72,10 +74,14 @@ const config: HardhatUserConfig = {
     rinkeby: createTestnetConfig("rinkeby"),
     ropsten: createTestnetConfig("ropsten"),
   },
+  namedAccounts: {
+    deployer: 0,
+    simpleERC20Beneficiary: 1,
+  },
   solidity: {
     compilers: [
       {
-        version: "0.6.12",
+        version: "0.8.9",
       },
       {
         version: "0.6.6",

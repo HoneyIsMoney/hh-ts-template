@@ -1,4 +1,5 @@
 node_modules
+typechain/**/*.ts
 
 #Hardhat files
 cache
